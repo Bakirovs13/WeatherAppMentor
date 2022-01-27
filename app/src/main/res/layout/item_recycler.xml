@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_item_icon"
+            android:src="@drawable/ic__sun"
+            style="@style/icon_parameters" />
+
+        <TextView
+            android:id="@+id/tv_forecast_date"
+            style="@style/tv_medium_size"
+            android:text="Mon,16" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_forecast_temp_up"
+                style="@style/tv_small_size"
+                android:layout_marginEnd="1dp"
+                android:text="35 C" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="11dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:id="@+id/tv_forecast_temp_down"
+                style="@style/tv_small_size"
+                android:layout_marginEnd="1dp"
+                android:text="26 C" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="11dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_arrow_down" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

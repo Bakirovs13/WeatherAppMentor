@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.weather.WeatherFragment">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+
+        />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        tools:src="@drawable/img_afternoon_city"
+        android:scaleType="centerCrop" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="220dp"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="28dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_current_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="18dp"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Sunday, 19 May 2019 | 9:30PM" />
+
+            <TextView
+                android:id="@+id/current_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_city_bg"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="15dp"
+                android:textColor="#0DA0EA"
+                app:drawableEndCompat="@drawable/ic_location_on"
+                app:layout_constraintBottom_toTopOf="@id/temp_up_and_down_cont"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="MUMBAI,INDIA" />
+
+            <LinearLayout
+                android:id="@+id/temp_up_and_down_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/wind_cont"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/current_temp_cont"
+                app:layout_constraintTop_toBottomOf="@id/current_city">
+
+                <TextView
+                    android:id="@+id/tv_crnt_temp_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="24dp"
+                    android:textColor="#666666"
+                    android:textSize="16sp"
+                    tools:text="35°C" />
+
+                <TextView
+                    android:id="@+id/tv_crnt_temp_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:textColor="#666666"
+                    android:textSize="16sp"
+                    tools:text="35°C" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/current_temp_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/pressure_cont"
+                app:layout_constraintEnd_toStartOf="@id/temp_up_and_down_cont"
+                app:layout_constraintStart_toEndOf="@id/weather_status_cont"
+                app:layout_constraintTop_toBottomOf="@id/current_city">
+
+                <TextView
+                    android:id="@+id/tv_current_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+
+                    android:textSize="32sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.63"
+                    tools:text="29" />
+
+                <TextView
+                    android:id="@+id/degree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    tools:text="@string/celsium_text"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@id/tv_current_temp"
+                    app:layout_constraintTop_toTopOf="@id/tv_current_temp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/weather_status_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/humidity_cont"
+                app:layout_constraintEnd_toStartOf="@id/current_temp_cont"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/current_city">
+
+                <ImageView
+                    android:id="@+id/iv_weather_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    tools:src="@drawable/ic_launcher_foreground" />
+
+                <TextView
+                    android:id="@+id/tv_weather_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="Cloudy" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/humidity_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+
+                app:layout_constraintBottom_toTopOf="@id/sunrise_cont"
+                app:layout_constraintEnd_toStartOf="@id/pressure_cont"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weather_status_cont">
+
+                <ImageView
+                    android:id="@+id/iv_humidity"
+                    style="@style/icon_parameters" />
+
+                <TextView
+                    android:id="@+id/tv_humidity_percents"
+                    style="@style/tv_medium_size"
+                    tools:text="73%" />
+
+                <TextView
+                    android:id="@+id/tv_humidity"
+                    style="@style/tv_small_size"
+                    tools:ignore="SmallSp"
+                    tools:text="Humidity" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pressure_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/sunset_cont"
+                app:layout_constraintEnd_toStartOf="@id/wind_cont"
+                app:layout_constraintStart_toEndOf="@id/humidity_cont"
+                app:layout_constraintTop_toBottomOf="@id/current_temp_cont">
+
+                <ImageView
+                    android:id="@+id/iv_pressure"
+                    style="@style/icon_parameters" />
+
+                <TextView
+                    android:id="@+id/tv_mBar"
+                    style="@style/tv_medium_size"
+                    tools:text="1,009mBar" />
+
+                <TextView
+                    android:id="@+id/tv_pressure"
+                    style="@style/tv_small_size"
+                    tools:text="Pressure" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wind_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/daytime_cont"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/pressure_cont"
+                app:layout_constraintTop_toBottomOf="@id/temp_up_and_down_cont">
+
+                <ImageView
+                    android:id="@+id/iv_wind"
+                    style="@style/icon_parameters" />
+
+                <TextView
+                    android:id="@+id/tv_wind_speed"
+                    style="@style/tv_medium_size"
+                    tools:text="Wind" />
+
+                <TextView
+                    android:id="@+id/tv_wind"
+                    style="@style/tv_small_size"
+                    tools:text="Wind" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sunrise_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/rv_forecast"
+                app:layout_constraintEnd_toStartOf="@id/sunset_cont"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/humidity_cont"
+
+                >
+
+                <ImageView
+                    android:id="@+id/iv_sunrise"
+                    style="@style/icon_parameters" />
+
+                <TextView
+                    android:id="@+id/tv_sunrise_time"
+                    style="@style/tv_medium_size"
+                    tools:text="6:03 AM" />
+
+                <TextView
+                    android:id="@+id/tv_sunrise"
+                    style="@style/tv_small_size"
+                    tools:text="Sunrise" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sunset_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/rv_forecast"
+
+                app:layout_constraintEnd_toEndOf="@id/daytime_cont"
+                app:layout_constraintStart_toEndOf="@id/sunrise_cont"
+                app:layout_constraintTop_toBottomOf="@id/pressure_cont">
+
+                <ImageView
+                    android:id="@+id/iv_sunset"
+                    style="@style/icon_parameters" />
+
+                <TextView
+                    android:id="@+id/tv_sunset_time"
+                    style="@style/tv_medium_size" />
+
+                <TextView
+                    android:id="@+id/tv_sunset"
+                    style="@style/tv_small_size"
+                    tools:text="Sunset" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/daytime_cont"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@id/rv_forecast"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/sunset_cont"
+                app:layout_constraintTop_toBottomOf="@id/wind_cont">
+
+                <ImageView
+                    android:id="@+id/iv_daytime"
+                    style="@style/icon_parameters" />
+
+                <TextView
+                    android:id="@+id/tv_daytime_duration"
+                    style="@style/tv_medium_size" />
+
+                <TextView
+                    android:id="@+id/tv_daytime"
+                    style="@style/tv_small_size"
+                    tools:text="Daytime" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/rv_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sunset_cont">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:id="@+id/iv_item_icon"
+                            style="@style/icon_parameters"
+                            android:src="@drawable/ic__sun" />
+
+                        <TextView
+                            android:id="@+id/tv_forecast_date"
+                            style="@style/tv_medium_size"
+                            android:text="Mon,16" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_forecast_temp_up"
+                                style="@style/tv_small_size"
+                                android:layout_marginEnd="1dp"
+                                android:text="35 C" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="5dp"
+                                android:src="@drawable/ic_arrow_up" />
+
+                            <TextView
+                                android:id="@+id/tv_forecast_temp_down"
+                                style="@style/tv_small_size"
+                                android:layout_marginEnd="1dp"
+                                android:text="26 C" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_arrow_down" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="48dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:id="@+id/iv_item_icon2"
+                            style="@style/icon_parameters"
+                            android:src="@drawable/ic__sun" />
+
+                        <TextView
+                            android:id="@+id/tv_forecast_date2"
+                            style="@style/tv_medium_size"
+                            android:text="Mon,16" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_forecast_temp_up2"
+                                style="@style/tv_small_size"
+                                android:layout_marginEnd="1dp"
+                                android:text="35 C" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="5dp"
+                                android:src="@drawable/ic_arrow_up" />
+
+                            <TextView
+                                android:id="@+id/tv_forecast_temp_down2"
+                                style="@style/tv_small_size"
+                                android:layout_marginEnd="1dp"
+                                android:text="26 C" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_arrow_down" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:id="@+id/iv_item_icon3"
+                            style="@style/icon_parameters"
+                            android:src="@drawable/ic__sun" />
+
+                        <TextView
+                            android:id="@+id/tv_forecast_date3"
+                            style="@style/tv_medium_size"
+                            android:text="Mon,16" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_forecast_temp_up3"
+                                style="@style/tv_small_size"
+                                android:layout_marginEnd="1dp"
+                                android:text="35 C" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="5dp"
+                                android:src="@drawable/ic_arrow_up" />
+
+                            <TextView
+                                android:id="@+id/tv_forecast_temp_down3"
+                                style="@style/tv_small_size"
+                                android:layout_marginEnd="1dp"
+                                android:text="26 C" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_arrow_down" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
