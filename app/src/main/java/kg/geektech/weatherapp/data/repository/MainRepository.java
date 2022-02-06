@@ -4,6 +4,8 @@ import static kg.geektech.weatherapp.BuildConfig.BASE_URL;
 
 import androidx.lifecycle.MutableLiveData;
 
+import javax.inject.Inject;
+
 import kg.geektech.weatherapp.common.Resource;
 import kg.geektech.weatherapp.data.models.WeatherAppModel;
 import kg.geektech.weatherapp.data.remote.WeatherApi;
@@ -14,10 +16,16 @@ import retrofit2.Response;
 public class MainRepository {
 
     private WeatherApi api;
+    private String city;
 
+    @Inject
     public MainRepository(WeatherApi api) {
         this.api = api;
 
+    }
+
+    public void setCityName(String city) {
+        this.city = city;
     }
 
     public MutableLiveData<Resource<WeatherAppModel>> getWeather() {
@@ -25,7 +33,7 @@ public class MainRepository {
         MutableLiveData<Resource<WeatherAppModel>> liveData = new MutableLiveData<>();
         liveData.setValue(Resource.loading());
 
-        api.getWeather("Bishkek",BASE_URL,"metric").enqueue(new Callback<WeatherAppModel>() {
+        api.getWeather(city,BASE_URL,"metric").enqueue(new Callback<WeatherAppModel>() {
             @Override
             public void onResponse(Call<WeatherAppModel> call, Response<WeatherAppModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -43,4 +51,5 @@ public class MainRepository {
         });
         return liveData;
     }
+
 }

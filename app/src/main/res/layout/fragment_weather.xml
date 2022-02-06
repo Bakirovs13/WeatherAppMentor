@@ -71,25 +71,50 @@
                 app:layout_constraintStart_toEndOf="@id/current_temp_cont"
                 app:layout_constraintTop_toBottomOf="@id/current_city">
 
-                <TextView
-                    android:id="@+id/tv_crnt_temp_up"
+                <LinearLayout
+                    android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="24dp"
-                    android:textColor="#666666"
-                    android:textSize="16sp"
-                    tools:text="35°C" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_crnt_temp_down"
+                    <TextView
+                        android:id="@+id/tv_crnt_temp_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="#666666"
+                        android:textSize="16sp"
+                        tools:text="35°C" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_arrow_up" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="10dp"
-                    android:textColor="#666666"
-                    android:textSize="16sp"
-                    tools:text="35°C" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_crnt_temp_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#666666"
+                        android:textSize="16sp"
+                        tools:text="35°C" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_arrow_down" />
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -121,7 +146,6 @@
                     android:id="@+id/degree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     tools:text="@string/celsium_text"
                     android:textSize="24sp"
                     app:layout_constraintStart_toEndOf="@id/tv_current_temp"

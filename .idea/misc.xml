@@ -14,7 +14,8 @@
         <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/triangle_top.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/tv_city_bg.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.4" />
-        <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_weather.xml" value="0.2" />
+        <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_city.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_weather.xml" value="0.4" />
         <entry key="..\:/Users/Aruuke/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/item_recycler.xml" value="0.72" />
       </map>
     </option>
