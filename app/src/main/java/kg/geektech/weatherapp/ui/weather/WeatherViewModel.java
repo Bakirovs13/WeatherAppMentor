@@ -1,12 +1,8 @@
 package kg.geektech.weatherapp.ui.weather;
 
-import static kg.geektech.weatherapp.BuildConfig.BASE_URL;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-
 import javax.inject.Inject;
-
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import kg.geektech.weatherapp.common.Resource;
 import kg.geektech.weatherapp.data.models.WeatherAppModel;

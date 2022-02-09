@@ -1,21 +1,39 @@
 
 package kg.geektech.weatherapp.data.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
+
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import kg.geektech.weatherapp.data.local.converter.CloudsConverter;
+import kg.geektech.weatherapp.data.local.converter.CoordConverter;
+import kg.geektech.weatherapp.data.local.converter.MainConverter;
+import kg.geektech.weatherapp.data.local.converter.SysConverter;
+import kg.geektech.weatherapp.data.local.converter.WeatherConverter;
+import kg.geektech.weatherapp.data.local.converter.WindConverter;
+
+@Entity(tableName = "weather")
 public class WeatherAppModel {
 
     @SerializedName("coord")
     @Expose
+    @TypeConverters({CoordConverter.class})
     private Coord coord;
     @SerializedName("weather")
     @Expose
+    @TypeConverters({WeatherConverter.class})
     private List<Weather> weather = null;
     @SerializedName("base")
     @Expose
     private String base;
+    @TypeConverters({MainConverter.class})
     @SerializedName("main")
     @Expose
     private Main main;
@@ -24,19 +42,24 @@ public class WeatherAppModel {
     private Integer visibility;
     @SerializedName("wind")
     @Expose
+    @TypeConverters({WindConverter.class})
     private Wind wind;
     @SerializedName("clouds")
     @Expose
+    @TypeConverters({CloudsConverter.class})
     private Clouds clouds;
     @SerializedName("dt")
     @Expose
     private Integer dt;
     @SerializedName("sys")
     @Expose
+    @TypeConverters({SysConverter.class})
     private Sys sys;
     @SerializedName("timezone")
     @Expose
     private Integer timezone;
+
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import javax.inject.Inject;
 
 import kg.geektech.weatherapp.common.Resource;
+import kg.geektech.weatherapp.data.local.WeatherDao;
 import kg.geektech.weatherapp.data.models.WeatherAppModel;
 import kg.geektech.weatherapp.data.remote.WeatherApi;
 import retrofit2.Call;
@@ -17,6 +18,7 @@ public class MainRepository {
 
     private WeatherApi api;
     private String city;
+    private WeatherDao dao;
 
     @Inject
     public MainRepository(WeatherApi api) {
@@ -38,6 +40,7 @@ public class MainRepository {
             public void onResponse(Call<WeatherAppModel> call, Response<WeatherAppModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     liveData.setValue(Resource.success(response.body()));
+                    dao.insert(response.body());
                 } else {
                     liveData.setValue(Resource.error(response.message(), null));
                 }

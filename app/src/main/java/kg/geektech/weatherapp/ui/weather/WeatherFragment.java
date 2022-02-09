@@ -33,6 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import kg.geektech.weatherapp.R;
 import kg.geektech.weatherapp.base.BaseFragment;
 import kg.geektech.weatherapp.common.Resource;
+import kg.geektech.weatherapp.data.local.WeatherDao;
 import kg.geektech.weatherapp.data.models.WeatherAppModel;
 import kg.geektech.weatherapp.data.remote.WeatherApi;
 import kg.geektech.weatherapp.databinding.FragmentWeatherBinding;
@@ -43,6 +44,8 @@ public class WeatherFragment extends BaseFragment<FragmentWeatherBinding> {
     private WeatherViewModel viewModel;
     private WeatherFragmentArgs args;
     private NavController controller;
+    @Inject
+    WeatherDao dao;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class WeatherFragment extends BaseFragment<FragmentWeatherBinding> {
                     case ERROR:
                         viewBinding.progress.setVisibility(View.GONE);
                         Toast.makeText(requireActivity(), resource.msg, Toast.LENGTH_LONG).show();
+                        setWeather(dao.getWeather());
                         break;
                 }
             }
@@ -95,6 +99,7 @@ public class WeatherFragment extends BaseFragment<FragmentWeatherBinding> {
         @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("EEEE, dd MMM yyyy | hh:mm");
         String today = formatter.format(date);
         viewBinding.tvCurrentDate.setText(today);
+
 
         viewBinding.currentCity.setText(data.getName());
         viewBinding.tvWeatherStatus.setText(data.getWeather().get(0).getMain());
@@ -146,6 +151,7 @@ public class WeatherFragment extends BaseFragment<FragmentWeatherBinding> {
                 .centerCrop()
                 .into(viewBinding.image);
     }
+
 
     @Override
     protected void setupListeners() {
